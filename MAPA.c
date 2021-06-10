@@ -47,19 +47,37 @@ void fila_matricular(){
 	}
 }
 
+void imprimir(){
+	int i;
+	
+	if(fila.ini == NULL){
+		printf("Não há atividades para mostrar!\n");
+	}
+	else{
+		for(i = 0; i < FILA; i++){
+			printf("%d", fila.RA[i], "\n");
+			printf("%s", fila.nome_arquivo[i], "\n");
+			printf("%s", fila.extensao_arquivo[i], "\n");
+			printf("%d", fila.matricula_responsavel[i], "\n");
+			printf("-----------------\n");
+		}
+	}
+}
+
 main(){
 	int opcao;
 	setlocale(LC_ALL, "Portuguese");
 	
 	do{
 		menu();
+		imprimir();
 		opcoes();
 		printf("Escolha uma opção: ");
 		scanf("%d", &opcao);
 		switch(opcao){
 			case 1:
 				fila_matricular();
-		}		break;
+		}	
 	}while(opcao != 5);
 }
 
