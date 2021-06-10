@@ -49,6 +49,7 @@ void fila_matricular(){
 
 main(){
 	int opcao;
+	setlocale(LC_ALL, "Portuguese");
 	
 	do{
 		menu();
