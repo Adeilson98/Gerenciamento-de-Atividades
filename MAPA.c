@@ -5,10 +5,10 @@
 #define FILA 5
 
 struct tatividades {
-	int RA[FILA];
+	int RA;
 	char nome_arquivo[50];
 	char extensao_arquivo[10];
-	int matricula_responsavel[FILA]; 
+	int matricula_responsavel; 
 };
 
 struct tfila {
@@ -34,19 +34,20 @@ opcoes(){
 
 void fila_matricular(){
 	if(fila.fim == FILA){
-		printf("\n Numero total de matriculas atingido!\n\n");
+		printf("\n Numero total de atividades registradas atingidas!\n\n");
 		system("pause");
 	}
 	else{
 		printf("Digite o RA: ");
 		scanf("%d", &fila.dados[fila.fim].RA);
 		printf("Escreva o nome do Arquivo: ");
-		scanf("%s", &fila.dados[fila.fim].nome_arquivo);
+		scanf("%s", fila.dados[fila.fim].nome_arquivo);
 		printf("Escreva a extensão do arquivo: ");
-		scanf("%s", &fila.dados[fila.fim].extensao_arquivo);
+		scanf("%s", fila.dados[fila.fim].extensao_arquivo);
 		printf("Digite a Matricula do professor reponsável pela correção: ");
 		scanf("%d", &fila.dados[fila.fim].matricula_responsavel);
 		fila.fim++;
+		system("cls");
 	}
 }
 
@@ -57,11 +58,11 @@ void imprimir(){
 		printf("Não há atividades para mostrar!\n");
 	}
 	else{
-		for(i = 0; i < FILA; i++){
-			printf("%d", fila.RA[i]);
-			printf("%s", fila.nome_arquivo[i]);
-			printf("%s", fila.extensao_arquivo[i]);
-			printf("%d", fila.matricula_responsavel[i]);
+		for(i = 0; i < fila.fim; i++){
+			printf("%d \n", fila.dados[i].RA);
+			printf("%s \n", fila.dados[i].nome_arquivo);
+			printf("%s \n", fila.dados[i].extensao_arquivo);
+			printf("%d \n", fila.dados[i].matricula_responsavel);
 			printf("-----------------\n");
 		}
 	}
