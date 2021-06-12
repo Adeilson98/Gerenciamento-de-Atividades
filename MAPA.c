@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include <locale.h>
 
-#define STR 30
 #define FILA 5
 
-struct tmatriculas {
+struct tcad_atividades {
 	int RA[FILA];
-	char nome_arquivo[FILA];
-	char extensao_arquivo[FILA];
+	char nome_arquivo[STR];
+	char extensao_arquivo[STR];
 	int matricula_responsavel[FILA]; //numero da matricula do professor responsável pela correção
+};
+
+struct tfila {
+	tcad_atividades dados;
 	int ini;
 	int fim;
 };
@@ -37,10 +40,13 @@ void fila_matricular(){
 	else{
 		printf("Digite o RA: ");
 		scanf("%d", &fila.RA[fila.fim]);
+		fila.fim++;
 		printf("Escreva o nome do Arquivo: ");
 		scanf("%s", &fila.nome_arquivo[fila.fim]);
+		fila.fim++;
 		printf("Escreva a extensão do arquivo: ");
 		scanf("%s", &fila.extensao_arquivo[fila.fim]);
+		fila.fim++;
 		printf("Digite a Matricula do professor reponsável pela correção: ");
 		scanf("%d", &fila.matricula_responsavel[fila.fim]);
 		fila.fim++;
@@ -50,15 +56,15 @@ void fila_matricular(){
 void imprimir(){
 	int i;
 	
-	if(fila.ini == NULL){
+	if(fila.ini == fila.fim){
 		printf("Não há atividades para mostrar!\n");
 	}
 	else{
 		for(i = 0; i < FILA; i++){
-			printf("%d", fila.RA[i], "\n");
-			printf("%s", fila.nome_arquivo[i], "\n");
-			printf("%s", fila.extensao_arquivo[i], "\n");
-			printf("%d", fila.matricula_responsavel[i], "\n");
+			printf("%d", fila.RA[i]);
+			printf("%s", fila.nome_arquivo[i]);
+			printf("%s", fila.extensao_arquivo[i]);
+			printf("%d", fila.matricula_responsavel[i]);
 			printf("-----------------\n");
 		}
 	}
