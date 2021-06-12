@@ -4,20 +4,20 @@
 
 #define FILA 5
 
-struct tcad_atividades {
+struct tatividades {
 	int RA[FILA];
-	char nome_arquivo[STR];
-	char extensao_arquivo[STR];
-	int matricula_responsavel[FILA]; //numero da matricula do professor responsável pela correção
+	char nome_arquivo[50];
+	char extensao_arquivo[10];
+	int matricula_responsavel[FILA]; 
 };
 
 struct tfila {
-	tcad_atividades dados;
+	struct tatividades dados[FILA];
 	int ini;
 	int fim;
 };
 
-struct tmatriculas fila;
+struct tfila fila;
 
 menu(){
 	printf("******************************************\n");
@@ -39,16 +39,13 @@ void fila_matricular(){
 	}
 	else{
 		printf("Digite o RA: ");
-		scanf("%d", &fila.RA[fila.fim]);
-		fila.fim++;
+		scanf("%d", &fila.dados[fila.fim].RA);
 		printf("Escreva o nome do Arquivo: ");
-		scanf("%s", &fila.nome_arquivo[fila.fim]);
-		fila.fim++;
+		scanf("%s", &fila.dados[fila.fim].nome_arquivo);
 		printf("Escreva a extensão do arquivo: ");
-		scanf("%s", &fila.extensao_arquivo[fila.fim]);
-		fila.fim++;
+		scanf("%s", &fila.dados[fila.fim].extensao_arquivo);
 		printf("Digite a Matricula do professor reponsável pela correção: ");
-		scanf("%d", &fila.matricula_responsavel[fila.fim]);
+		scanf("%d", &fila.dados[fila.fim].matricula_responsavel);
 		fila.fim++;
 	}
 }
