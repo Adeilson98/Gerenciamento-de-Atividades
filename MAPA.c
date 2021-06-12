@@ -32,6 +32,8 @@ menu(){
 opcoes(){
 	printf("\n1 - Matricular\n");
 	printf("2 - Remover Atividade\n");
+	printf("3 - Remover todas as Atividades Registradas\n");
+	printf("4 - Encerrar o Programa\n");
 }
 
 void fila_matricular(){
@@ -56,7 +58,7 @@ void fila_matricular(){
 void imprimir(){
 	int i;
 	
-	if(fila.ini == fila.fim){
+	if(fila.ini == fila.fim || fila.ini == 0){
 		printf("Não há atividades para mostrar!\n");
 	}
 	else{
@@ -93,6 +95,29 @@ remover(){
 	}
 }
 
+remove_tudo(){
+	int i;
+	
+	if(fila.ini == fila.fim){
+		printf("Não existe atividades para remover!\n\n");
+		system("pause");
+		system("cls");
+	}
+	else{
+		for(i = 0; i < fila.fim; i++) {
+			fila.dados[i] = fila.dados[i + fila.fim];
+			strcpy(fila.dados[i].nome_arquivo, fila.dados[i + fila.ini].nome_arquivo);
+			strcpy(fila.dados[i].extensao_arquivo, fila.dados[i + fila.ini].extensao_arquivo);
+		}
+		fila.dados[fila.fim].RA = 0;
+		strcpy(fila.dados[fila.fim].nome_arquivo, "");
+		strcpy(fila.dados[fila.fim].extensao_arquivo, "");
+		fila.dados[fila.fim].matricula_responsavel = 0;
+		fila.fim--;
+		system("cls");
+	}
+}
+
 main(){
 	int opcao;
 	setlocale(LC_ALL, "Portuguese");
@@ -111,7 +136,14 @@ main(){
 			case 2:
 				remover();
 				break;
+				
+			case 3:
+				remove_tudo();
+				break;
+				
+			case 4:
+				break;
 		}	
-	}while(opcao != 5);
+	}while(opcao != 4);
 }
 
