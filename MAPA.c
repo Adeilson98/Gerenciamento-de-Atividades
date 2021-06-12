@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 
 #define FILA 5
@@ -30,6 +31,7 @@ menu(){
 }
 opcoes(){
 	printf("\n1 - Matricular\n");
+	printf("2 - Remover Atividade\n");
 }
 
 void fila_matricular(){
@@ -68,6 +70,29 @@ void imprimir(){
 	}
 }
 
+remover(){
+	int i;
+	
+	if(fila.ini == fila.fim){
+		printf("Não existe atividades para remover!\n\n");
+		system("pause");
+		system("cls");
+	}
+	else{
+		for(i = 0; i < fila.fim; i++) {
+			fila.dados[i] = fila.dados[i + 1];
+			strcpy(fila.dados[i].nome_arquivo, fila.dados[i + 1].nome_arquivo);
+			strcpy(fila.dados[i].extensao_arquivo, fila.dados[i + 1].extensao_arquivo);
+		}
+		fila.dados[fila.fim].RA = 0;
+		strcpy(fila.dados[fila.fim].nome_arquivo, "");
+		strcpy(fila.dados[fila.fim].extensao_arquivo, "");
+		fila.dados[fila.fim].matricula_responsavel = 0;
+		fila.fim--;
+		system("cls");
+	}
+}
+
 main(){
 	int opcao;
 	setlocale(LC_ALL, "Portuguese");
@@ -81,6 +106,11 @@ main(){
 		switch(opcao){
 			case 1:
 				fila_matricular();
+				break;
+			
+			case 2:
+				remover();
+				break;
 		}	
 	}while(opcao != 5);
 }
